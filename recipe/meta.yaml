@@ -11,16 +11,17 @@ source:
   sha256: 8bf59ea0b2774478d757c7f0b256d1cb19b62aace29791565f260cbc29febcd0
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - pip
-    - python
+    - setuptools
+    - python {{ python_min }}
   run:
-    - python
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -29,6 +30,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: http://github.com/fmoo/python-varint
